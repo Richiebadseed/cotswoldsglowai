@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotswolds Glow AI – Beautiful Websites & Social Media for Local Businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --stone: #f5f0e8;
+    --cream: #faf8f3;
+    --warm-white: #fffdf8;
+    --gold: #c9a84c;
+    --gold-light: #e8c96d;
+    --gold-pale: #f7edcf;
+    --forest: #2d4a35;
+    --forest-mid: #3d6147;
+    --forest-light: #4e7a5a;
+    --bark: #6b5b3e;
+    --mist: #9bada0;
+    --text-dark: #1e2820;
+    --text-mid: #3d4a40;
+    --text-soft: #6b7a6e;
+    --border: rgba(180,160,120,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    line-height: 1.15;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5vw;
+    background: rgba(250,248,243,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 40px rgba(45,74,53,0.08); }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.6rem;
+    text-decoration: none;
+  }
+  .logo-icon {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--forest), var(--forest-light));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    box-shadow: 0 0 18px rgba(201,168,76,0.35);
+  }
+  .logo-icon::after {
+    content: '✦';
+    color: var(--gold-light);
+    font-size: 16px;
+  }
+  .logo-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--forest);
+    letter-spacing: 0.01em;
+  }
+  .logo-text span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2.2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 0.875rem;
+    color: var(--text-mid);
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--forest); }
+
+  .nav-cta {
+    background: var(--forest);
+    color: var(--cream) !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 50px;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--forest-light) !important; transform: translateY(-1px); }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    width: 24px; height: 2px;
+    background: var(--forest); border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  .mobile-menu {
+    display: none; flex-direction: column; gap: 0;
+    position: fixed; top: 65px; left: 0; right: 0;
+    background: var(--warm-white);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 5vw 1.5rem;
+    z-index: 99;
+  }
+  .mobile-menu a {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--text-mid);
+    font-size: 0.95rem;
+  }
+  .mobile-menu.open { display: flex; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 8rem 5vw 5rem;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      radial-gradient(ellipse 70% 50% at 65% 40%, rgba(201,168,76,0.18) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 70% at 15% 75%, rgba(45,74,53,0.22) 0%, transparent 55%),
+      linear-gradient(160deg, rgba(250,248,243,0.88) 0%, rgba(240,232,210,0.82) 40%, rgba(220,210,185,0.78) 100%),
+      url('https://images.unsplash.com/photo-1534430480872-3498386e7856?w=1800&q=80&fit=crop');
+    background-size: cover;
+    background-position: center 40%;
+    background-repeat: no-repeat;
+  }
+
+  /* Extra warm stone glow layer */
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 50%, rgba(255,230,150,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 100% 40% at 50% 100%, rgba(45,74,53,0.15) 0%, transparent 60%);
+  }
+
+  /* Cotswolds rolling hills SVG silhouette */
+  .hero-hills {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 1;
+    opacity: 0.12;
+  }
+
+  /* Floating glow orbs */
+  .orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(60px); opacity: 0.5; pointer-events: none;
+  }
+  .orb-1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(230,195,90,0.28), transparent 70%);
+    top: -120px; right: -80px;
+    animation: drift 8s ease-in-out infinite alternate;
+  }
+  .orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(45,74,53,0.18), transparent 70%);
+    bottom: 80px; left: 3%;
+    animation: drift 10s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0,0) scale(1); }
+    100% { transform: translate(30px, 20px) scale(1.05); }
+  }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--gold-pale);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--bark);
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .hero-eyebrow::before { content: '✦'; color: var(--gold); font-size: 10px; }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    color: var(--text-dark);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--forest);
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-soft);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(135deg, var(--forest), var(--forest-light));
+    color: var(--cream);
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(45,74,53,0.25);
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(45,74,53,0.35);
+  }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent;
+    color: var(--forest);
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1.5px solid rgba(45,74,53,0.35);
+    transition: all 0.25s;
+    letter-spacing: 0.02em;
+  }
+  .btn-secondary:hover {
+    background: rgba(45,74,53,0.05);
+    border-color: var(--forest);
+    transform: translateY(-2px);
+  }
+
+  /* Hero mockup */
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+  }
+
+  .mockup-wrap {
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .laptop {
+    width: 100%; max-width: 480px;
+    background: #1a1f1b;
+    border-radius: 16px 16px 4px 4px;
+    padding: 12px 12px 0;
+    box-shadow:
+      0 40px 80px rgba(45,74,53,0.2),
+      0 0 0 1px rgba(255,255,255,0.08);
+    position: relative;
+  }
+  .laptop-screen {
+    background: linear-gradient(145deg, #f0ede4, #e8e2d0);
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+    position: relative;
+  }
+  .screen-header {
+    background: var(--forest);
+    padding: 0.6rem 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .screen-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold-light);
+    opacity: 0.7;
+  }
+  .screen-bar {
+    flex: 1; height: 6px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 3px;
+  }
+  .screen-body {
+    padding: 1rem;
+    display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .screen-hero-block {
+    background: linear-gradient(135deg, var(--forest), var(--forest-light));
+    border-radius: 6px;
+    padding: 1.2rem;
+    color: white;
+  }
+  .screen-h { width: 70%; height: 10px; background: rgba(255,255,255,0.8); border-radius: 3px; margin-bottom: 6px; }
+  .screen-p { width: 90%; height: 6px; background: rgba(255,255,255,0.4); border-radius: 3px; margin-bottom: 4px; }
+  .screen-btn { width: 35%; height: 18px; background: var(--gold); border-radius: 20px; margin-top: 8px; }
+  .screen-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+  .screen-card {
+    background: white;
+    border-radius: 5px;
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .sc-icon { width: 18px; height: 18px; background: var(--gold-pale); border-radius: 4px; margin-bottom: 5px; }
+  .sc-line { height: 5px; background: var(--stone); border-radius: 3px; margin-bottom: 3px; }
+  .sc-line.short { width: 60%; }
+
+  .laptop-base {
+    background: #2a2e2b;
+    height: 10px;
+    border-radius: 0 0 4px 4px;
+    margin: 0 -12px;
+  }
+  .laptop-stand {
+    width: 60px; height: 6px;
+    background: #222;
+    margin: 0 auto;
+    border-radius: 0 0 3px 3px;
+  }
+
+  /* Floating badge */
+  .hero-badge {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: white;
+    border-radius: 16px;
+    padding: 0.9rem 1.1rem;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    display: flex; align-items: center; gap: 0.6rem;
+    border: 1px solid var(--border);
+    animation: float 6s ease-in-out infinite 1s;
+  }
+  .badge-icon {
+    width: 36px; height: 36px;
+    background: var(--gold-pale);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .badge-text { font-size: 0.75rem; line-height: 1.3; }
+  .badge-text strong { display: block; color: var(--forest); font-size: 0.85rem; }
+
+  .hero-badge-2 {
+    position: absolute;
+    top: 20px; left: -30px;
+    background: var(--forest);
+    border-radius: 14px;
+    padding: 0.7rem 1rem;
+    box-shadow: 0 8px 30px rgba(45,74,53,0.25);
+    color: white;
+    font-size: 0.75rem;
+    animation: float 6s ease-in-out infinite 2s;
+  }
+  .badge2-num { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-light); }
+
+  /* Trust bar */
+  .trust-bar {
+    background: var(--forest);
+    padding: 1rem 5vw;
+    display: flex; align-items: center; justify-content: center; gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+  }
+  .trust-item span { color: var(--gold-light); font-size: 14px; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 5vw; }
+
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  .section-label::before { content: '—'; color: var(--gold); opacity: 0.6; }
+
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-weight: 300;
+  }
+  .section-title em { color: var(--forest); font-style: italic; }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--text-soft);
+    max-width: 560px;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--warm-white); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+
+  .service-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px rgba(45,74,53,0.1);
+  }
+  .service-card.featured {
+    background: linear-gradient(145deg, var(--forest), var(--forest-light));
+    border-color: transparent;
+    color: white;
+  }
+  .service-card.featured .service-price,
+  .service-card.featured .service-title,
+  .service-card.featured .service-desc { color: white; }
+  .service-card.featured .service-desc { opacity: 0.8; }
+  .service-card.featured .service-feature { color: rgba(255,255,255,0.75); }
+  .service-card.featured .service-icon { background: rgba(255,255,255,0.12); }
+
+  .service-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-card.featured::after { transform: scaleX(1); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    background: var(--gold-pale);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+    font-style: italic;
+  }
+  .service-card.featured .service-price { color: var(--gold-light); }
+
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--text-dark);
+    margin-bottom: 0.75rem;
+  }
+
+  .service-desc {
+    font-size: 0.88rem;
+    color: var(--text-soft);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .service-features { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .service-feature {
+    font-size: 0.82rem;
+    color: var(--text-soft);
+    display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .service-feature::before { content: '✓'; color: var(--gold); font-weight: 600; flex-shrink: 0; }
+  .service-card.featured .service-feature::before { color: var(--gold-light); }
+
+  /* ── WHY US ── */
+  #why { background: var(--cream); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .why-visual {
+    position: relative;
+    background: linear-gradient(135deg, var(--forest), var(--forest-mid));
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    color: white;
+    overflow: hidden;
+  }
+  .why-visual::before {
+    content: '';
+    position: absolute; top: -50%; right: -30%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(201,168,76,0.2), transparent 70%);
+    border-radius: 50%;
+  }
+  .why-quote {
+    position: relative; z-index: 1;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,0.9);
+  }
+  .why-quote-attr {
+    font-size: 0.8rem;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+  .why-stars {
+    color: var(--gold-light);
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+  }
+
+  .why-reasons { display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .why-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .why-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .why-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--gold);
+    font-style: italic;
+    line-height: 1;
+    min-width: 2rem;
+    margin-top: -2px;
+  }
+
+  .why-content h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+  }
+  .why-content p {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: var(--warm-white); }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .portfolio-card {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(45,74,53,0.1);
+  }
+
+  .portfolio-thumb {
+    aspect-ratio: 16/10;
+    background: linear-gradient(135deg, #e8e2d0, #d4cdb8);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .portfolio-thumb.live { background: linear-gradient(135deg, var(--forest), var(--forest-light)); }
+  .portfolio-thumb.cafe { background: linear-gradient(135deg, #c9a98c, #a07a5a); }
+  .portfolio-thumb.plumber { background: linear-gradient(135deg, #4a6880, #2d4a5e); }
+  .portfolio-thumb.bnb { background: linear-gradient(135deg, #9b7db0, #6b4e8a); }
+  .portfolio-thumb.yoga { background: linear-gradient(135deg, #6b9b7d, #4a7a5e); }
+  .portfolio-thumb.next { background: linear-gradient(135deg, var(--stone), #e0d8c5); }
+
+  .thumb-label {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .thumb-label strong { display: block; color: white; font-size: 1.1rem; margin-bottom: 4px; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-style: italic; }
+  .thumb-label.dark { color: rgba(0,0,0,0.4); }
+  .thumb-label.dark strong { color: var(--text-soft); }
+
+  .live-chip {
+    position: absolute; top: 12px; right: 12px;
+    background: var(--gold);
+    color: white;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-weight: 500;
+  }
+  .coming-chip {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(0,0,0,0.15);
+    color: rgba(0,0,0,0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 50px;
+  }
+
+  .portfolio-info {
+    padding: 1.25rem 1.4rem;
+  }
+  .portfolio-info h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    margin-bottom: 0.25rem;
+  }
+  .portfolio-info p {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    font-weight: 300;
+  }
+  .portfolio-link {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    color: var(--forest);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .portfolio-link:hover { text-decoration: underline; }
+
+  /* ── PRICING ── */
+  #pricing { background: linear-gradient(180deg, var(--cream) 0%, var(--warm-white) 100%); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+    align-items: start;
+  }
+
+  .pricing-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .pricing-card:hover { transform: translateY(-5px); }
+
+  .pricing-card.popular {
+    background: var(--forest);
+    border-color: transparent;
+    color: white;
+    transform: scale(1.04);
+    box-shadow: 0 30px 80px rgba(45,74,53,0.25);
+  }
+  .pricing-card.popular:hover { transform: scale(1.04) translateY(-5px); }
+
+  .popular-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    color: white;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 16px;
+    border-radius: 50px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .pricing-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .pricing-card.popular .pricing-name { color: white; }
+
+  .pricing-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .pricing-card.popular .pricing-price { color: var(--gold-light); }
+
+  .pricing-per {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    margin-bottom: 1.5rem;
+  }
+  .pricing-card.popular .pricing-per { color: rgba(255,255,255,0.6); }
+
+  .pricing-divider {
+    height: 1px;
+    background: var(--border);
+    margin-bottom: 1.5rem;
+  }
+  .pricing-card.popular .pricing-divider { background: rgba(255,255,255,0.15); }
+
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2rem; }
+  .pricing-feature {
+    display: flex; align-items: flex-start; gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-soft);
+  }
+  .pricing-card.popular .pricing-feature { color: rgba(255,255,255,0.8); }
+  .pricing-feature::before { content: '✓'; color: var(--gold); flex-shrink: 0; font-weight: 600; }
+  .pricing-card.popular .pricing-feature::before { color: var(--gold-light); }
+
+  .pricing-btn {
+    display: block;
+    text-align: center;
+    padding: 0.85rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.25s;
+    letter-spacing: 0.02em;
+  }
+  .pricing-btn-outline {
+    border: 1.5px solid rgba(45,74,53,0.3);
+    color: var(--forest);
+  }
+  .pricing-btn-outline:hover { background: rgba(45,74,53,0.05); border-color: var(--forest); }
+  .pricing-btn-gold {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: white;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  }
+  .pricing-btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.5); }
+
+  .pricing-note {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-size: 0.82rem;
+    color: var(--text-soft);
+  }
+  .pricing-note a { color: var(--forest); }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--warm-white);
+  }
+
+  .about-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+  .about-portrait {
+    background: linear-gradient(145deg, #d4cdb8, #c2baa4);
+    border-radius: 24px;
+    aspect-ratio: 4/5;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .portrait-placeholder {
+    font-size: 5rem;
+    opacity: 0.5;
+  }
+  .about-portrait::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(45,74,53,0.2));
+  }
+
+  .about-float {
+    position: absolute;
+    bottom: -20px; right: -25px;
+    background: white;
+    border-radius: 16px;
+    padding: 1rem 1.2rem;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    border: 1px solid var(--border);
+  }
+  .about-float-icon { font-size: 1.5rem; margin-bottom: 4px; }
+  .about-float p { font-size: 0.75rem; color: var(--text-soft); font-weight: 300; }
+  .about-float strong { display: block; font-size: 0.9rem; color: var(--forest); }
+
+  .about-content h2 {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    margin-bottom: 1.5rem;
+  }
+  .about-content p {
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+  .about-content p strong { color: var(--text-dark); font-weight: 500; }
+
+  .about-badges {
+    display: flex; flex-wrap: wrap; gap: 0.7rem;
+    margin-top: 1.5rem;
+  }
+  .about-badge {
+    background: var(--gold-pale);
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--bark);
+    font-size: 0.78rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+    font-weight: 500;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--forest); }
+
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start;
+  }
+
+  .contact-left h2 {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: white;
+    margin-bottom: 1rem;
+  }
+  .contact-left h2 em { color: var(--gold-light); }
+  .contact-left p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  .contact-detail {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-detail:hover { color: var(--gold-light); }
+  .contact-icon {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  /* Form */
+  .contact-form {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px;
+    padding: 2.5rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    color: white;
+    font-size: 0.875rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--gold-light); }
+  .form-group select option { background: var(--forest); }
+  .form-group textarea { resize: none; height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.25s;
+    letter-spacing: 0.03em;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+  }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,168,76,0.45); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1a2118;
+    padding: 3rem 5vw 2rem;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.82rem;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-copy { width: 100%; text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06); }
+
+  /* ── SUCCESS MESSAGE ── */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    color: var(--gold-light);
+  }
+  .form-success.show { display: block; }
+  .form-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .form-success p { color: rgba(255,255,255,0.65); font-size: 0.875rem; }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-sub { margin: 0 auto 2.5rem; }
+    .hero-btns { justify-content: center; }
+    .hero-visual { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card.popular { transform: scale(1); }
+    .about-inner { grid-template-columns: 1fr; }
+    .about-visual { display: none; }
+    .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .trust-bar { gap: 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 4rem 5vw; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="logo-icon"></div>
+    <span class="logo-text">Cotswolds <span>Glow</span> AI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#portfolio">Our Work</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Get Started</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#why" onclick="closeMobile()">Why Us</a>
+  <a href="#portfolio" onclick="closeMobile()">Our Work</a>
+  <a href="#pricing" onclick="closeMobile()">Pricing</a>
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#contact" onclick="closeMobile()">Get Started →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- Rolling hills silhouette -->
+  <svg class="hero-hills" viewBox="0 0 1440 200" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,160 C200,100 350,180 500,140 C650,100 750,170 900,130 C1050,90 1200,160 1440,120 L1440,200 L0,200 Z" fill="#2d4a35"/>
+    <path d="M0,180 C180,150 300,190 480,165 C660,140 800,185 1000,160 C1200,135 1350,175 1440,155 L1440,200 L0,200 Z" fill="#3d6147" opacity="0.6"/>
+  </svg>
+
+  <div class="hero-inner">
+    <div class="hero-content fade-up">
+      <div class="hero-eyebrow">AI-Powered · Cotswolds Based · Personal Care</div>
+      <h1>Give Your Cotswolds Business Its <em>Digital Glow</em></h1>
+      <p class="hero-sub">Beautiful AI-powered websites and smart social media optimisation designed for local businesses — built fast, affordably, and with personal care.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">✦ Get Your Free AI Audit</a>
+        <a href="#contact" class="btn-secondary">📞 Book a Free Discovery Call</a>
+      </div>
+    </div>
+
+    <div class="hero-visual fade-up">
+      <div class="mockup-wrap">
+        <div class="laptop">
+          <div class="laptop-screen">
+            <div class="screen-header">
+              <div class="screen-dot"></div>
+              <div class="screen-dot" style="opacity:0.4"></div>
+              <div class="screen-dot" style="opacity:0.2"></div>
+              <div class="screen-bar"></div>
+            </div>
+            <div class="screen-body">
+              <div class="screen-hero-block">
+                <div class="screen-h"></div>
+                <div class="screen-p"></div>
+                <div class="screen-p" style="width:70%"></div>
+                <div class="screen-btn"></div>
+              </div>
+              <div class="screen-cards">
+                <div class="screen-card">
+                  <div class="sc-icon"></div>
+                  <div class="sc-line"></div>
+                  <div class="sc-line short"></div>
+                </div>
+                <div class="screen-card">
+                  <div class="sc-icon" style="background:#e8ede9"></div>
+                  <div class="sc-line"></div>
+                  <div class="sc-line short"></div>
+                </div>
+                <div class="screen-card">
+                  <div class="sc-icon" style="background:#ede8d5"></div>
+                  <div class="sc-line"></div>
+                  <div class="sc-line short"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="laptop-base"></div>
+          <div class="laptop-stand"></div>
+        </div>
+
+        <div class="hero-badge">
+          <div class="badge-icon">🚀</div>
+          <div class="badge-text">
+            <strong>Launched in Days</strong>
+            Not months
+          </div>
+        </div>
+
+        <div class="hero-badge-2">
+          <div class="badge2-num">£499</div>
+          <div style="font-size:0.7rem;opacity:0.7">websites from</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span>🔒</span> SSL Secure</div>
+  <div class="trust-item"><span>⚡</span> Fast Delivery</div>
+  <div class="trust-item"><span>📍</span> Locally Based in the Cotswolds</div>
+  <div class="trust-item"><span>🤝</span> No Long Contracts</div>
+  <div class="trust-item"><span>💬</span> Friendly Personal Support</div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div style="max-width:560px" class="fade-up">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Everything Your Business Needs to <em>Shine Online</em></h2>
+      <p class="section-sub">From your first beautiful website to ongoing digital care — we handle it all, so you can focus on what you love.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon">🌐</div>
+        <div class="service-price">From £499</div>
+        <h3 class="service-title">AI Website Builds</h3>
+        <p class="service-desc">Stunning, mobile-friendly, conversion-focused websites built in days using the latest AI tools combined with genuine human expertise and creative care.</p>
+        <ul class="service-features">
+          <li class="service-feature">Custom design tailored to your brand</li>
+          <li class="service-feature">Mobile-first, fast-loading pages</li>
+          <li class="service-feature">SEO foundations included</li>
+          <li class="service-feature">Contact forms & booking integrations</li>
+          <li class="service-feature">Delivered in days, not months</li>
+        </ul>
+      </div>
+
+      <div class="service-card featured fade-up">
+        <div class="service-icon" style="background:rgba(255,255,255,0.12)">⭐</div>
+        <div class="service-price">From £59/mo</div>
+        <h3 class="service-title">Monthly Digital Care</h3>
+        <p class="service-desc">Peace of mind every month. We keep your website secure, updated, and performing beautifully while you get on with running your business.</p>
+        <ul class="service-features">
+          <li class="service-feature">Regular updates & backups</li>
+          <li class="service-feature">Security monitoring</li>
+          <li class="service-feature">Content refreshes & edits</li>
+          <li class="service-feature">Performance improvements</li>
+          <li class="service-feature">Priority support</li>
+        </ul>
+      </div>
+
+      <div class="service-card fade-up">
+        <div class="service-icon">📱</div>
+        <div class="service-price">Ask for pricing</div>
+        <h3 class="service-title">Social Media Optimisation</h3>
+        <p class="service-desc">Consistent, engaging posts and reels that attract local customers — done for you. Smart content that builds your brand and brings people through the door.</p>
+        <ul class="service-features">
+          <li class="service-feature">Content creation & copywriting</li>
+          <li class="service-feature">Reels & short video scripts</li>
+          <li class="service-feature">Scheduling & posting</li>
+          <li class="service-feature">Basic analytics review</li>
+          <li class="service-feature">Local audience targeting</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div class="why-visual fade-up">
+        <div class="why-stars">★★★★★</div>
+        <div class="why-quote">"Finally, a local team who actually understood what our business needed — the website was live within a week and the results have been brilliant."</div>
+        <div class="why-quote-attr">— Satisfied Cotswolds Client</div>
+
+        <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.12)">
+          <div style="display:flex;gap:2rem;flex-wrap:wrap">
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold-light);font-style:italic">50+</div>
+              <div style="font-size:0.78rem;color:rgba(255,255,255,0.55)">Businesses Helped</div>
+            </div>
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold-light);font-style:italic">5 days</div>
+              <div style="font-size:0.78rem;color:rgba(255,255,255,0.55)">Average Launch Time</div>
+            </div>
+            <div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--gold-light);font-style:italic">100%</div>
+              <div style="font-size:0.78rem;color:rgba(255,255,255,0.55)">Satisfaction Rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">The Smarter Choice for <em>Cotswolds Businesses</em></h2>
+
+        <div class="why-reasons" style="margin-top:2rem">
+          <div class="why-item">
+            <div class="why-num">1</div>
+            <div class="why-content">
+              <h4>Locally Based, Personally Invested</h4>
+              <p>We live and work in the Cotswolds. We understand the character of businesses here and the customers they serve — that context makes all the difference.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">2</div>
+            <div class="why-content">
+              <h4>AI Speed with Human Heart</h4>
+              <p>We use the latest AI tools to build faster and smarter — but every project gets genuine creative attention and personal care you simply won't find at big agencies.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">3</div>
+            <div class="why-content">
+              <h4>Genuinely Affordable</h4>
+              <p>Professional quality at a fraction of traditional agency prices. No hidden fees, no inflated quotes — just honest, transparent pricing that makes sense.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">4</div>
+            <div class="why-content">
+              <h4>No Contracts, No Stress</h4>
+              <p>Stay because you love the results, not because you're locked in. Flexible, month-to-month arrangements that put you in control.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-num">5</div>
+            <div class="why-content">
+              <h4>Creative Roots in the Community</h4>
+              <p>Connected to the creative energy of Pip and the Bad Seed — we bring an artist's eye and a storyteller's instinct to every business we work with.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-inner">
+    <div style="max-width:560px" class="fade-up">
+      <div class="section-label">Our Work</div>
+      <h2 class="section-title">Websites Businesses Are <em>Proud Of</em></h2>
+      <p class="section-sub">Every project is unique. Here's a look at what we've created — and what we can create for you.</p>
+    </div>
+
+    <div class="portfolio-grid" style="margin-top:3rem">
+
+      <a href="https://pipandthebadseed.co.uk" target="_blank" class="portfolio-card fade-up">
+        <div class="portfolio-thumb live">
+          <div class="thumb-label">
+            <strong>Pip and the Bad Seed</strong>
+            Live Music Duo
+          </div>
+          <div class="live-chip">✦ Live Site</div>
+        </div>
+        <div class="portfolio-info">
+          <h4>Pip and the Bad Seed</h4>
+          <p>Full artist website — gigs, music, booking & press kit</p>
+          <span class="portfolio-link">Visit site →</span>
+        </div>
+      </a>
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-thumb cafe">
+          <div class="thumb-label">
+            <strong>Cotswolds Café</strong>
+            Independent Coffee Shop
+          </div>
+          <div class="coming-chip">Example</div>
+        </div>
+        <div class="portfolio-info">
+          <h4>Cotswolds Café</h4>
+          <p>Warm, inviting site with menu, opening hours & events</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-thumb plumber">
+          <div class="thumb-label">
+            <strong>Local Tradesperson</strong>
+            Plumber / Builder
+          </div>
+          <div class="coming-chip">Example</div>
+        </div>
+        <div class="portfolio-info">
+          <h4>Trusted Local Trades</h4>
+          <p>Professional services site that converts visitors into enquiries</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-thumb bnb">
+          <div class="thumb-label">
+            <strong>Boutique B&B</strong>
+            Bed & Breakfast
+          </div>
+          <div class="coming-chip">Example</div>
+        </div>
+        <div class="portfolio-info">
+          <h4>Boutique B&B</h4>
+          <p>Elegant accommodation site with gallery, rates & online booking</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card fade-up">
+        <div class="portfolio-thumb yoga">
+          <div class="thumb-label">
+            <strong>Yoga & Wellness Coach</strong>
+            Health & Wellbeing
+          </div>
+          <div class="coming-chip">Example</div>
+        </div>
+        <div class="portfolio-info">
+          <h4>Wellness Coach</h4>
+          <p>Calming brand site with class schedule, testimonials & booking</p>
+        </div>
+      </div>
+
+      <div class="portfolio-card fade-up" style="cursor:default">
+        <div class="portfolio-thumb next" style="background:linear-gradient(135deg,#f0ede4,#ddd8c8)">
+          <div class="thumb-label dark" style="text-align:center">
+            <strong style="color:var(--text-soft);font-size:1.4rem">✦</strong>
+            <span style="color:var(--text-soft)">Your business could be next</span>
+          </div>
+        </div>
+        <div class="portfolio-info">
+          <h4>More Examples Coming Soon</h4>
+          <p>We're growing fast — get in touch to see the latest work</p>
+          <a href="#contact" class="portfolio-link">Start your project →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-inner">
+    <div style="text-align:center;max-width:580px;margin:0 auto" class="fade-up">
+      <div class="section-label">Simple Pricing</div>
+      <h2 class="section-title">Honest Prices, <em>Brilliant Results</em></h2>
+      <p class="section-sub" style="margin:0 auto">No hidden fees. No nasty surprises. Just great work at prices that make sense for Cotswolds businesses.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-name">Website Glow-Up</div>
+        <div class="pricing-price">£499</div>
+        <div class="pricing-per">one-time payment</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li class="pricing-feature">Up to 5 pages</li>
+          <li class="pricing-feature">Mobile-responsive design</li>
+          <li class="pricing-feature">SEO foundations</li>
+          <li class="pricing-feature">Contact form</li>
+          <li class="pricing-feature">Google Analytics setup</li>
+          <li class="pricing-feature">1 month free support</li>
+        </ul>
+        <a href="#contact" class="pricing-btn pricing-btn-outline">Get Started</a>
+      </div>
+
+      <div class="pricing-card popular fade-up">
+        <div class="popular-badge">✦ Most Popular</div>
+        <div class="pricing-name">Full Glow Package</div>
+        <div class="pricing-price">£899</div>
+        <div class="pricing-per">one-time + 3 months care included</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li class="pricing-feature">Everything in Glow-Up</li>
+          <li class="pricing-feature">Up to 8 pages</li>
+          <li class="pricing-feature">3 months of Digital Care included</li>
+          <li class="pricing-feature">Social media starter pack</li>
+          <li class="pricing-feature">Priority delivery</li>
+          <li class="pricing-feature">Strategy call included</li>
+        </ul>
+        <a href="#contact" class="pricing-btn pricing-btn-gold">Get the Full Package</a>
+      </div>
+
+      <div class="pricing-card fade-up">
+        <div class="pricing-name">Monthly Retainer</div>
+        <div class="pricing-price">£79</div>
+        <div class="pricing-per">per month · cancel anytime</div>
+        <div class="pricing-divider"></div>
+        <ul class="pricing-features">
+          <li class="pricing-feature">Ongoing website updates</li>
+          <li class="pricing-feature">Security & backups</li>
+          <li class="pricing-feature">Content refreshes</li>
+          <li class="pricing-feature">Social media support</li>
+          <li class="pricing-feature">Monthly check-in call</li>
+          <li class="pricing-feature">No contract, no lock-in</li>
+        </ul>
+        <a href="#contact" class="pricing-btn pricing-btn-outline">Start Monthly</a>
+      </div>
+    </div>
+
+    <p class="pricing-note fade-up">
+      Not sure which is right for you? <a href="#contact">Book a free discovery call</a> — we'll find the perfect fit together.
+    </p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-inner">
+      <div class="about-visual fade-up">
+        <div class="about-portrait">
+          <div class="portrait-placeholder">🌿</div>
+        </div>
+        <div class="about-float">
+          <div class="about-float-icon">🎵</div>
+          <div>
+            <strong>Pip and the Bad Seed</strong>
+            <p>Creative roots in the community</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content fade-up">
+        <div class="section-label">About</div>
+        <h2 class="section-title">Made in the <em>Cotswolds</em>, with care</h2>
+        <p>Hi, I'm the person behind Cotswolds Glow AI. With a background in creativity — you might know me from <strong>Pip and the Bad Seed</strong> — and a genuine passion for what AI tools can do for small businesses, I set out to bridge that gap.</p>
+        <p>I saw too many brilliant local businesses with outdated websites or no online presence at all, losing customers to competitors who were simply more visible. Traditional agencies were either too expensive, too slow, or just didn't feel personal.</p>
+        <p>So I built something different. <strong>Cotswolds Glow AI combines the speed and intelligence of modern AI tools with real human creativity and a genuine understanding of this corner of the world.</strong></p>
+        <p>Whether you run a café in Chipping Campden, a B&B in Bourton-on-the-Water, or a coaching practice in Cirencester — I'd love to help your business glow.</p>
+        <div class="about-badges">
+          <span class="about-badge">🎨 Creative Background</span>
+          <span class="about-badge">🤖 AI-Powered Tools</span>
+          <span class="about-badge">📍 Cotswolds Based</span>
+          <span class="about-badge">💚 Personal Touch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-inner">
+      <div class="contact-left fade-up">
+        <div class="section-label" style="color:var(--gold-light)">Get in Touch</div>
+        <h2>Ready for Your <em>Digital Glow-Up?</em></h2>
+        <p>Whether you're ready to get started or just want to ask a question — reach out. There's no pressure, no sales pitch, just a friendly chat about what you need.</p>
+
+        <a href="mailto:glow@cotswoldsglowai.co.uk" class="contact-detail">
+          <div class="contact-icon">✉️</div>
+          glow@cotswoldsglowai.co.uk
+        </a>
+        <a href="#contact" class="contact-detail">
+          <div class="contact-icon">📞</div>
+          Add your phone number here
+        </a>
+        <a href="#contact" class="contact-detail">
+          <div class="contact-icon">📍</div>
+          The Cotswolds, Gloucestershire
+        </a>
+
+        <div style="margin-top:2rem;padding:1.5rem;background:rgba(201,168,76,0.1);border:1px solid rgba(201,168,76,0.2);border-radius:16px">
+          <div style="color:var(--gold-light);font-size:0.8rem;letter-spacing:0.05em;text-transform:uppercase;margin-bottom:0.5rem">Free AI Website Audit</div>
+          <p style="color:rgba(255,255,255,0.65);font-size:0.85rem;line-height:1.7;margin:0">Not sure where to start? Send us your current website (or tell us you don't have one) and we'll give you a free audit with actionable improvements.</p>
+        </div>
+      </div>
+
+      <div class="contact-form fade-up">
+        <div id="formWrap">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" id="fname" placeholder="Jane Smith">
+            </div>
+            <div class="form-group">
+              <label>Business Name</label>
+              <input type="text" id="bname" placeholder="The Cosy Café">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="email" placeholder="jane@yourbusiness.co.uk">
+          </div>
+          <div class="form-group">
+            <label>What Do You Need?</label>
+            <select id="service">
+              <option value="">Select a service...</option>
+              <option>New Website Build</option>
+              <option>Website Refresh / Redesign</option>
+              <option>Monthly Digital Care</option>
+              <option>Social Media Help</option>
+              <option>Full Glow Package</option>
+              <option>Free AI Audit</option>
+              <option>Just exploring / not sure yet</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell Us About Your Business</label>
+            <textarea id="message" placeholder="A little about your business and what you're hoping to achieve..."></textarea>
+          </div>
+          <button class="form-submit" onclick="handleSubmit()">✦ Send My Enquiry</button>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🌿</div>
+          <h3>Brilliant — we're on it!</h3>
+          <p>Thanks for getting in touch. We'll come back to you within one business day. In the meantime, feel free to explore our work or browse the site.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Cotswolds <span>Glow</span> AI</div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">
+      © 2026 Cotswolds Glow AI · Helping Local Businesses Shine ✦ · Cotswolds, UK
+      <br><span style="font-size:0.72rem;opacity:0.6;margin-top:4px;display:inline-block">Made with AI tools + human heart · glow@cotswoldsglowai.co.uk</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Hamburger
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit() {
+    const name = document.getElementById('fname').value;
+    const email = document.getElementById('email').value;
+    if (!name || !email) {
+      alert('Please fill in at least your name and email — we\'d love to hear from you!');
+      return;
+    }
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('formSuccess').classList.add('show');
+  }
+</script>
+
+</body>
+</html>
